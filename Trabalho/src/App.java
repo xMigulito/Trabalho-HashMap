@@ -1,47 +1,11 @@
+import java.util.ArrayList;
+import java.util.EnumMap;
 
-    import java.util.ArrayList;
-    import java.util.EnumMap;
+import colecVeiculos.ColecaoVeiculos;
+import enums.Marca;
+import veiculo.Veiculo;
 
-enum Marca {
-    VOLKSWAGEN, FORD, GM, RENAULT // Adicione outras marcas conforme necessário
-}
-
-class Veiculo {
-    private String nome;
-
-    public Veiculo(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-}
-
-class ColecaoVeiculos {
-    private EnumMap<Marca, ArrayList<Veiculo>> colecao;
-
-    public ColecaoVeiculos() {
-        colecao = new EnumMap<>(Marca.class);
-    }
-
-    public void addVeiculoMarca(Marca marca, Veiculo veiculo) {
-        colecao.computeIfAbsent(marca, k -> new ArrayList<>()).add(veiculo);
-    }
-
-    public ArrayList<Veiculo> filtro(String palavraChave) {
-        ArrayList<Veiculo> veiculosFiltrados = new ArrayList<>();
-
-        for (ArrayList<Veiculo> veiculos : colecao.values()) {
-            for (Veiculo veiculo : veiculos) {
-                if (veiculo.getNome().toLowerCase().contains(palavraChave.toLowerCase())) {
-                    veiculosFiltrados.add(veiculo);
-                }
-            }
-        }
-
-        return veiculosFiltrados;
-    }
+public class App {
     public static void main(String[] args) {
         ColecaoVeiculos colecao = new ColecaoVeiculos();
 
